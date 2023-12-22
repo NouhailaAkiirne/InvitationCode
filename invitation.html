@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Miss Me?</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f9d7df; /* Love-themed background color */
+        }
+
+        .invitation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .invitation-card {
+            text-align: center;
+            margin-bottom: 20px; /* Add some space below the image */
+        }
+
+        h1 {
+            color: #fff; /* White text color */
+        }
+
+        #loveImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        #loveImage:hover {
+            transform: scale(1.1);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px; /* Add some space between image and buttons */
+        }
+
+        button {
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #f6a4c3;
+    color: white;
+    border: none;
+    border-radius: 20px; /* Increased border-radius for a softer look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding a subtle box shadow for depth */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+
+    /* Optional: Hover effect to make it more interactive */
+}
+
+button:hover {
+    background-color: #ee87a4; /* Lighter color on hover */
+}
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-container ">
+        <div class="invitation-card">
+            <img id="loveImage" src="https://s3.getstickerpack.com/storage/uploads/sticker-pack/milk-n-mocha-2/sticker_11.gif?9cd92185dda8044e8ac50cefd8cf089e" alt="Love">
+        </div>
+
+        <div id="yesNoButtons" class="buttons">
+            <button onclick="changeToYes()">Yeeeeeeesss 😍😊😍</button>
+            <button onclick="changeToNo()">Noooooooo 😒🤔😒</button>
+        </div>
+
+        <div id="backButton" class="buttons hidden">
+            <button onclick="goToInitialPage()">Back</button>
+        </div>
+    </div>
+
+    <script>
+        const initialImageUrl = 'https://s3.getstickerpack.com/storage/uploads/sticker-pack/milk-n-mocha-2/sticker_11.gif?9cd92185dda8044e8ac50cefd8cf089e';
+        const yesImageUrl = 'https://pa1.aminoapps.com/7103/e1577e808f1e06b60b349d1ba45008e002929a65r1-370-300_hq.gif';
+        const noImageUrl = 'https://i.pinimg.com/originals/df/86/23/df86235cd423b7174958c8171950886c.gif';
+
+        function changeToYes() {
+            document.getElementById('loveImage').src = yesImageUrl;
+            toggleButtonsVisibility();
+        }
+
+        function changeToNo() {
+            document.getElementById('loveImage').src = noImageUrl;
+            toggleButtonsVisibility();
+        }
+
+        function goToInitialPage() {
+            document.getElementById('loveImage').src = initialImageUrl;
+            toggleButtonsVisibility();
+        }
+
+        function toggleButtonsVisibility() {
+            const yesNoButtons = document.getElementById('yesNoButtons');
+            const backButton = document.getElementById('backButton');
+
+            yesNoButtons.classList.toggle('hidden');
+            backButton.classList.toggle('hidden');
+        }
+
+        // Listen for mouse movement to create an interactive effect
+        document.addEventListener('mousemove', function(event) {
+            const loveImage = document.getElementById('loveImage');
+            const boundingRect = loveImage.getBoundingClientRect();
+            const centerX = boundingRect.left + boundingRect.width / 2;
+            const centerY = boundingRect.top + boundingRect.height / 2;
+            const deltaX = event.clientX - centerX;
+            const deltaY = event.clientY - centerY;
+            const rotateX = deltaY / 30;
+            const rotateY = -deltaX / 30;
+
+            loveImage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+    </script>
+</body>
+</html>
